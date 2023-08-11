@@ -9,6 +9,10 @@ const customer = [{
     "name": "myfuture",
     "age": 20,
     "gender": "female"
+}, {
+    "name": "luffy",
+    "age": 22,
+    "gender": "male"
 }]
 
 router.get('/', (req, res) => {
