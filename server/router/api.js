@@ -16,7 +16,7 @@ const customer = [{
 }]
 
 router.get('/', (req, res) => {
-    res.send({ "data": customer })
+    res.send({ "Customer": customer })
 })
 
 module.exports = router;
