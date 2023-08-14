@@ -10,21 +10,47 @@ const port = process.env.PORT || 3001;
 const MONGO_URL = process.env.MONGO_URL;
 
 //middleware
-app.use(express.json);
+// app.use(express.json);
 
 
 app.use('/home', home);
 app.use('/api', api);
 // const customer = new Customer({
-//     name: "Minea ",
-//     Date: '2023-08-14',
+//     name: "minea",
+//     //Date: 2023 08 - 14,
 //     Service: "visa",
-//     Expire: '2023-08-16'
+//     Expire: '2023-08-16',
+//     Payment: 150.5
 // });
-// //customer.save();
-// app.get('/customer/:name', (req, res) => {
-//     res.send(req.params)
-// })
+//customer.save();
+
+//show customer 
+app.get('/customer', async(req, res) => {
+    try {
+        const customer = await Customer.find()
+        res.send({ "Customers": customer });
+    } catch (e) {
+        res.status(500).json({ error: e.message })
+    }
+
+});
+
+//post request to save 
+app.post('/customer', (req, res) => {
+    //show in console
+    console.log(req.body);
+    //create varible
+    const customer = new Customer({
+        name: req.body.name,
+        Date: req.body.Date,
+        Service: req.body.Service,
+        Expire: req.body.Expire,
+        Payment: req.body.Payment
+    });
+    customer.save();
+    res.status(200).json({ customer });
+});
+
 
 //Database connection
 db.connect(MONGO_URL)

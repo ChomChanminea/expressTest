@@ -3,7 +3,7 @@ const express = require('express');
 const router = express();
 
 //middleware
-router.use(express.json);
+//router.use(express.json);
 
 router.get('/', (req, res) => {
     res.send('hii')

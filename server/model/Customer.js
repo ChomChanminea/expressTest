@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const SchemaTypes = mongoose.Schema.Types;
+//const SchemaTypes = mongoose.Schema.Types;
 const Schema = mongoose.Schema;
 
 
@@ -18,10 +18,11 @@ const customerSchema = new Schema({
         require: [true, "Please Enter Service type"]
     },
     Expire: {
-        type: String,
-    }
+        type: String
+    },
+    Payment: { type: Number, require: true }
 
 
 }, { timestapmps: true });
 
-module.exports = mongoose.model('Customer', customerSchema);
+module.exports = mongoose.model('Customers', customerSchema);
