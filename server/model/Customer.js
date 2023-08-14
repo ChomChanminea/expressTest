@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-require('mongoose-double')('mongoose');
 const SchemaTypes = mongoose.Schema.Types;
 const Schema = mongoose.Schema;
 
@@ -20,9 +19,9 @@ const customerSchema = new Schema({
     },
     Expire: {
         type: String,
-    },
-    ExpirationPeriod: { type: String },
-    Payment: SchemaTypes.Decimal128,
-    Total: SchemaTypes.Decimal128
+    }
 
-});
+
+}, { timestapmps: true });
+
+module.exports = mongoose.model('Customer', customerSchema);

@@ -1,23 +1,33 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const home = require('./router/home.js');
 const db = require('mongoose');
-const api = require('./router/api.js')
+const api = require('./router/api.js');
+const Customer = require('./model/Customer.js');
 
-
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
-}
 const port = process.env.PORT || 3001;
-const CONNECTION = process.env.CONNECTION;
+const MONGO_URL = process.env.MONGO_URL;
+
+//middleware
+app.use(express.json);
 
 
 app.use('/home', home);
 app.use('/api', api);
-
+// const customer = new Customer({
+//     name: "Minea ",
+//     Date: '2023-08-14',
+//     Service: "visa",
+//     Expire: '2023-08-16'
+// });
+// //customer.save();
+// app.get('/customer/:name', (req, res) => {
+//     res.send(req.params)
+// })
 
 //Database connection
-db.connect(CONNECTION)
+db.connect(MONGO_URL)
     .then(() => {
         console.log('connected!');
         app.listen(port, () => {
