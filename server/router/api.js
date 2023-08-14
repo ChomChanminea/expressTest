@@ -1,18 +1,15 @@
 const express = require('express');
+const Customer = require('../model/Customer.js')
 const router = express();
 
-const customer = [{
-    "name": "Minea",
-    "age": 24,
-    "gender": "male"
-}, {
-    "name": "myfuture",
-    "age": 20,
-    "gender": "female"
-}, {
-    "name": "luffy",
-    "age": 22,
-    "gender": "male"
+//middleware
+router.use(express.json);
+
+const customer = new Customer[{
+    name: "Minea ",
+    Date: '2023-08-14',
+    Service: "visa",
+    Expire: '2023-08-16'
 }]
 
 router.get('/', (req, res) => {
