@@ -10,19 +10,20 @@ const port = process.env.PORT || 3001;
 const MONGO_URL = process.env.MONGO_URL;
 
 //middleware
-// app.use(express.json);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 app.use('/home', home);
 app.use('/api', api);
 // const customer = new Customer({
-//     name: "minea",
-//     //Date: 2023 08 - 14,
-//     Service: "visa",
+//     name: 'makra',
+//     Date: '2023-08-14',
+//     Service: 'visa',
 //     Expire: '2023-08-16',
 //     Payment: 150.5
 // });
-//customer.save();
+// customer.save();
 
 //show customer 
 app.get('/customer', async(req, res) => {
@@ -40,13 +41,7 @@ app.post('/customer', (req, res) => {
     //show in console
     console.log(req.body);
     //create varible
-    const customer = new Customer({
-        name: req.body.name,
-        Date: req.body.Date,
-        Service: req.body.Service,
-        Expire: req.body.Expire,
-        Payment: req.body.Payment
-    });
+    const customer = new Customer(req.body);
     customer.save();
     res.status(200).json({ customer });
 });
