@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    res.send('This is use post method!')
-})
+    res.send('This is use post method!');
+});
 
 module.exports = router;
