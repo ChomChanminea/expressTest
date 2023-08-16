@@ -1,11 +1,10 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const home = require('./controller/home.js');
 const db = require('mongoose');
-const update = require('./controller/update.js');
-const customer = require('./controller/customer.js');
-const findone = require('./controller/findone.js')
+const update = require('./controller/CusCollection/update.js');
+const customer = require('./controller/CusCollection/customer.js');
+const findone = require('./controller/CusCollection/findone.js')
 
 
 //process from .env file
@@ -17,10 +16,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //Route
-app.use('/api/home', home);
-app.use('/api/update', update);
+app.get('/', (req, res) => {
+    res.send('welecome');
+});
 app.use('/api/customer', customer);
 app.use('/api/findone', findone)
+app.use('/api/update', update);
 
 //Database connection
 db.connect(MONGO_URL)

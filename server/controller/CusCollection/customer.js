@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express();
-const Customer = require('../model/customerschema.js');
+const Customer = require('../../model/customerschema.js');
 
 
 // const customer = new Customer({
